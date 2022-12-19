@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="left">
-        <h1>Navbar</h1>
+        <h1><Link to="/">WestFinder</Link></h1>
       </div>
 
       <div className="right">
@@ -20,19 +20,19 @@ const Navbar = () => {
         </label>
         <ul className="list">
           <li>
-            <Link to=''>Home</Link>
+            <Link to=''>Ski Equipment</Link>
+          </li>
+          <li>
+            <Link to='/'>Winter clothes</Link>
+          </li>
+          <li>
+            <Link to='/'>Outdoor</Link>
           </li>
           <li>
             <Link to='./Login'>Login</Link>
           </li>
           <li>
-            <Link to='/'>Servixes</Link>
-          </li>
-          <li>
-            <Link to='/'>Linkbout Us</Link>
-          </li>
-          <li>
-            <Link to='/'>ContLinkct Us</Link>
+            <Link to='./register'>Sign Up</Link>
           </li>
         </ul>
       </div>

@@ -1,16 +1,29 @@
-import * as React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import {Link} from "react-router-dom";
-// import Login from '../Login/Login'
+import { Link, NavLink } from "react-router-dom";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import { authUser } from "../../Firebase/Config";
+
+// import { logOut } from "../../Firebase/Methods";
+import {useLogout} from '../../hooks/useLogout';
 
 import "./Navbar.css";
+import CartNum from "../../Pages/Cart/CartNum";
+
+const activeLink = ({ isActive }) => (isActive ? "active" : "");
 
 const Navbar = () => {
+  const [user] = useAuthState(authUser);
+  console.log(user);
+  const { logout } = useLogout();
+
   return (
     <nav className="navbar">
       <div className="left">
-        <h1><Link to="/">WestFinder</Link></h1>
+        <h1>
+          <Link to="/">WestFinder</Link>
+        </h1>
       </div>
 
       <div className="right">
@@ -20,25 +33,75 @@ const Navbar = () => {
         </label>
         <ul className="list">
           <li>
-            <Link to=''>Ski Equipment</Link>
+            <NavLink to="./jackets" className={activeLink}>
+              Jackets
+            </NavLink>
           </li>
           <li>
-            <Link to='/'>Winter clothes</Link>
+            <NavLink to="./pants" className={activeLink}>
+              Pants
+            </NavLink>
           </li>
           <li>
-            <Link to='/'>Outdoor</Link>
+            <NavLink to="/outdor" className={activeLink}>
+              Outdoor
+            </NavLink>
           </li>
-          <li>
-            <Link to='./Login'>Login</Link>
-          </li>
-          <li>
-            <Link to='./register'>Sign Up</Link>
-          </li>
+
+          {!user && (
+            <div style={{ display: "flex" }}>
+              <li>
+                <NavLink to="./Login">Login</NavLink>
+              </li>
+              <li>
+                <NavLink to="./register">Sign Up</NavLink>
+              </li>
+            </div>
+          )}
+          {user && (
+            <div
+              style={{
+                display: "flex",
+                justifyItems: "center",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <p style={{ color: "white" }}>Logged in as {user?.displayName}</p>
+              <button
+                style={{
+                  height: "35px",
+                  width: "75px",
+                  fontWeight: "bold",
+                  fontSize: "15px",
+                  marginLeft: "15px",
+                  cursor: "pointer",
+                }}
+                onClick={logout}
+              >
+                Log Out
+              </button>
+              <button
+                style={{
+                  height: "35px",
+                  width: "75px",
+                  fontWeight: "bold",
+                  fontSize: "15px",
+                  marginLeft: "15px",
+                  cursor: "pointer",
+                }}
+              >
+                Admin
+              </button>
+            </div>
+          )}
+          <div className="cart-icon">
+            <CartNum />
+          </div>
         </ul>
       </div>
     </nav>
   );
-}
-
+};
 
 export default Navbar;

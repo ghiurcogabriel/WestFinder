@@ -1,0 +1,35 @@
+.pr-page {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pr-container {
+    display: flex;
+    /* max-height: 500px; */
+    max-width: 40%;
+    padding: 50px;
+}
+
+
+.carousel-slider {
+    height: 100%;
+}
+
+.carousel .thumbs-wrapper {
+    display: none;
+}
+
+.carousel-root,
+.animated,
+.slider-wrapper,
+.slide,
+.slide div,
+.img-pr-carousel {
+    height: 100%;
+}
+
+.css-14lo706>span {
+    padding-right: 38px;
+}

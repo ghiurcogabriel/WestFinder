@@ -4,11 +4,15 @@ import './App.css';
 
 //components
 import Navbar from './Components/Navbar/Navbar';
-import Home from './Components/HomePage/Home';
+import Footer from "./Components/Footer/Footer";
 
 //routes
-import Login from './Components/Login/Login';
-import Register from './Components/Register/Register';
+import Home from './Pages/HomePage/Home';
+import Login from './Pages/Login/Login';
+import AllProducts from "./Pages/AllProducts";
+import Register from './Pages/Register/Register';
+import ProductPage from "./Pages/ProductPage/ProductPage";
+import Cart from "./Pages/Cart/Cart";
 
 function App() {
   return (
@@ -18,7 +22,11 @@ function App() {
           <Route exact path='/' element={<Home />} />
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
+          <Route path="/jackets" element={<AllProducts />}/>
+          <Route path="/jackets/productPage/:id" element={<ProductPage />}/>
+          <Route path="/cart" element={<Cart />}/>
         </Routes>
+        <Footer />
     </>
   );
 }

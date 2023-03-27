@@ -1,0 +1,37 @@
+.mui-desc-container {
+    display: flex;
+    justify-content: center;
+}
+
+.mui-box-description {
+    margin: 30px;
+    border-radius: 15px;
+    max-height: "500px";
+    min-height: '150px';
+    width: '80%';
+    padding: 20px;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.5;
+}
+#mui-md-description{
+    padding: 20px;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.5;
+}
+.product-color{
+    display: flex;
+    max-width: 200px;
+    justify-content: space-around;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.bread{
+    margin: 20px 20px 5px 10px;
+}
+.pr-price {
+    font-size: 22px;
+    font-weight: 600;
+}

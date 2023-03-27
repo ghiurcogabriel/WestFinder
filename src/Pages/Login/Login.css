@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@2066display=swap');
+
+:root {
+    --font-style: 'Nunito Sans', 'sans-serif';
+}
+
+* {
+    box-sizing: border-box;
+
+}
+
+.login-section {
+    width: 100%;
+    height: calc(100% - 82px);
+}
+
+.container {
+    background: #61A5C2;
+    font-family: var(--font-style);
+    width: 100%;
+    height: 100%;
+
+}
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 460px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: #212F45;
+    box-shadow: 0 15px 25px rgba(143, 124, 236, 0.7);
+    border-radius: 10px;
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.login-box .user-box input {
+    position: relative;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    position: relative;
+    left: 0;
+    top: -60px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input~label,
+.login-box .user-box input:valid~label {
+    top: -85px;
+    left: 0;
+    font-size: 18px;
+}
+
+#submit {
+    padding: 10px 20px;
+    color: #CBBDDB;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    letter-spacing: 4px;
+    border: 1px solid #8F7CEC;
+    margin: auto;
+}
+
+#submit:hover {
+    background: #8F7CEC;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #8F7CEC, 0 0 25px #8F7CEC, 0 0 50px #8F7CEC, 0 0 100px #8F7CEC;
+}
+
+.button-form {
+    display: flex;
+    flex-direction: row;
+}
+
+#register {
+    font-size: 14px;
+    text-decoration: none;
+    color: #CBBDDB;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+
+#register a {
+    margin: auto;
+    color: #8F7CEC;
+    text-decoration: none;
+}
+
+.line-break {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    color: #fff;
+}
+
+.line-break hr {
+    width: 100%;
+}
+
+.line-break span {
+    padding: 10px;
+}
+
+.social-login button:first-child {
+    margin: 20px 0;
+}
+
+.social-login button {
+    width: 100%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.social {
+    border-radius: 15px;
+    height: 60px;
+    color: #fff;
+    display: flex;
+}
+
+.social-g {
+    background-color: #DE4E3B;
+}
+
+.social-g span {
+    background-color: #C74635;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    width: 20%;
+    border-radius: 15px 0 0 15px;
+    justify-content: center;
+    margin-right: 5%;
+}
+.social-f {
+    background-color: #3B5897;
+}
+
+.social-f span {
+    background-color: #354F88;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    width: 20%;
+    border-radius: 15px 0 0 15px;
+    justify-content: center;
+    margin-right: 5%;
+}
+/* reset password */
+.reset-pass h2{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.reset-btn{
+    cursor: pointer;
+    border-radius: 15px;
+    background-color: rgb(0, 124, 103);
+    width: 120px;
+    height: 30px;
+    color: #fff;
+    border: none;
+    padding: 5px;;
+}

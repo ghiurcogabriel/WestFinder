@@ -1,0 +1,47 @@
+.ski-container {
+    display: block;
+    width: 100%;
+    height: auto;
+    align-items: center;
+}
+
+.equipmentt {
+    display: flex;
+    width: calc(90% - 60px);
+    justify-content: center;
+    align-items: center;
+}
+
+.equip-container {
+    display: flex;
+    width: 50%;
+    margin: 20px;
+    height: 500px;
+    align-items: center;
+    justify-content: center;
+}
+
+.equip-container img {
+    height: 100%;
+    width: 100%;
+}
+
+.btn-1 {
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    background-color: aquamarine;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.ski-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    margin-left: 8%;
+}

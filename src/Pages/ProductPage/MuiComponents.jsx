@@ -148,16 +148,16 @@ export const TabsData = ({ tabs }) => {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Usage" {...a11yProps(0)} style={CustomStyle} />
+          <Tab label="Activities" {...a11yProps(3)} style={CustomStyle} />
           <Tab label="Technology" {...a11yProps(1)} style={CustomStyle} />
           <Tab label="Season" {...a11yProps(2)} style={CustomStyle} />
-          <Tab label="Activities" {...a11yProps(3)} style={CustomStyle} />
+          <Tab label="Usage" {...a11yProps(0)} style={CustomStyle} />
         </Tabs>
       </Box>
 
-      {tabs?.use && (
+      {tabs?.activities && (
         <TabPanel value={value} index={0}>
-          {tabs?.use}
+          {tabs?.activities}
         </TabPanel>
       )}
       {tabs?.technology && (
@@ -170,11 +170,15 @@ export const TabsData = ({ tabs }) => {
           {tabs?.season}
         </TabPanel>
       )}
-      {tabs?.activities && (
+      {tabs?.parameters.map((param, i) => (
         <TabPanel value={value} index={3}>
-          {tabs?.activities}
+          {
+            <ul>
+              <li key={i}>{param}</li>
+            </ul>
+          }
         </TabPanel>
-      )}
+      ))}
     </Box>
   );
 };
@@ -186,7 +190,7 @@ export const Colors = ({ color }) => {
     <div className="product-color">
       {color?.colors?.map((color, i) => (
         <div
-        isRequired={true}
+          isrequired={true}
           onClick={() => setSelectedColor(color)}
           value={color}
           key={i}

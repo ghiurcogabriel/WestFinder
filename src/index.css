@@ -15,7 +15,7 @@ code {
 }
 html, body, #app, #app>div {
   height: 100%;
-  background-color: #A9D6E5;
+  background-color: #ffffff;
 }
 #root{
   width: 100%;

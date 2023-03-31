@@ -3,11 +3,18 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../Firebase/Config";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/zoom";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Zoom, Navigation, Pagination } from "swiper";
 
 import "./ProductPage.css";
 import {
@@ -39,20 +46,20 @@ const ProductPage = () => {
   useEffect(() => {
     setIsPending(true);
 
-    getDoc(doc(db, `jackets/${id}`))
+    getDoc(doc(db, `womens/${id}`))
       .then((snap) => {
         // console.log(snap);
         if (snap.exists) {
           // console.log("good");
           setTimeout(() => {
             setIsPending(false);
-         }, 1000)
+          }, 1000);
           setData(snap.data());
         } else {
           // console.log("error");
           setTimeout(() => {
             setIsPending(false);
-         }, 1000)
+          }, 1000);
           setError(`Could not find that data`);
         }
       })
@@ -60,7 +67,7 @@ const ProductPage = () => {
         setError(err.message);
         setTimeout(() => {
           setIsPending(false);
-       }, 1000)
+        }, 1000);
       });
   }, [id]);
 
@@ -87,13 +94,29 @@ const ProductPage = () => {
           <div>
             <div className="pr-page">
               <div className="pr-container">
-                <Carousel autoPlay centerMode infiniteLoop interval={3000}>
+                <Swiper
+                  style={{
+                    "--swiper-navigation-color": "#000269",
+                    "--swiper-pagination-color": "#635f5f",
+                    height: "auto",
+                  }}
+                  zoom={true}
+                  loop={true}
+                  navigation={true}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  modules={[Zoom, Navigation, Pagination]}
+                  className="mySwiper"
+                >
                   {data?.photo?.map((ph, i) => (
-                    <div key={i}>
-                      <img src={ph} alt="ski" className="img-pr-carousel" />
-                    </div>
+                    <SwiperSlide className="swiper-product">
+                      <div key={i} className="swiper-zoom-container">
+                        <img src={ph} alt="ski" className="img-pr-carousel" />
+                      </div>
+                    </SwiperSlide>
                   ))}
-                </Carousel>
+                </Swiper>
               </div>
               <div className="title-pr-container">
                 <div className="title-price-box">

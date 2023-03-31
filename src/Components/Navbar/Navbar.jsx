@@ -15,7 +15,11 @@ const activeLink = ({ isActive }) => (isActive ? "active" : "");
 
 const Navbar = () => {
   const [user] = useAuthState(authUser);
-  console.log(user);
+  if(user.displayName === 'gabi'){
+  console.log(user.displayName, true);
+  } else{
+    console.log('first')
+  }
   const { logout } = useLogout();
 
   return (
@@ -34,17 +38,17 @@ const Navbar = () => {
         <ul className="list">
           <li>
             <NavLink to="./jackets" className={activeLink}>
-              Jackets
+              Mens
             </NavLink>
           </li>
           <li>
             <NavLink to="./pants" className={activeLink}>
-              Pants
+              Womens
             </NavLink>
           </li>
           <li>
             <NavLink to="/outdor" className={activeLink}>
-              Outdoor
+              All Products
             </NavLink>
           </li>
 
@@ -81,6 +85,7 @@ const Navbar = () => {
               >
                 Log Out
               </button>
+              <NavLink to="./admin">
               <button
                 style={{
                   height: "35px",
@@ -93,6 +98,7 @@ const Navbar = () => {
               >
                 Admin
               </button>
+              </NavLink>
             </div>
           )}
           <div className="cart-icon">

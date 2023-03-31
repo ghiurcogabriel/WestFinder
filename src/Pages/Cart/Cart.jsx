@@ -32,30 +32,44 @@ const Cart = () => {
               <h4>Cart is Empty</h4>
             ) : (
               <>
-                <ul className="ul-items">
+                <div className="cart-items">
                   {cartItems?.map((item) => (
-                    <li className="CartItem__item" key={item.id}>
-                      <img
-                        className="item-cart-photo"
-                        src={item.photo}
-                        alt="photosda"
-                      />
-                      <p className="item-cart-title">{item.title}</p>
-                      <p className="item-cart-title">{item.price}</p>
+                    <div className="cart-box">
+                      <div className="cart-items-align">
+                        <img
+                          key={item.id}
+                          className="item-cart-photo"
+                          src={item.photo}
+                          alt="photosda"
+                        />
+                      </div>
+                      <div className="cart-title">
+                        <div>
+                          <p className="item-cart-title">{item.title}</p>
+                          <p className="item-cart-title">
+                            Price: {item.price} RON
+                          </p>
+                        </div>
+                      </div>
                       <DeleteForeverSharpIcon
                         className="CartItem__button"
                         onClick={() => removeFromCart(item.id)}
                         color="error"
                         style={{ cursor: "pointer" }}
                       />
-                    </li>
+                    </div>
                   ))}
-                </ul>
-                <Link to="" className="finish-order" style={{ color: "black" }}>
-                  Complete order
-                </Link>
+                </div>
               </>
             )}
+          </div>
+          <div className="total-cart">
+            <h2>
+              Cart Total: {cartItems.reduce((amount, item) => item.price + amount, 0)} 
+            </h2>
+            <Link to="" className="finish-order" style={{ color: "black" }}>
+              Complete order
+            </Link>
           </div>
         </div>
       )}

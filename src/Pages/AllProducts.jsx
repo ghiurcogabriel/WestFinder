@@ -15,11 +15,13 @@ const AllProducts = () => {
   useEffect(() => {
     setIsPending(true);
 
-    const products = collection(db, "jackets");
+    const products = collection(db, "womens");
     getDocs(products)
       .then((snapshot) => {
         if (snapshot.empty) {
-          setIsPending(false);
+          setTimeout(() => {
+            setIsPending(false);
+          }, 1500);
           setError("no data found");
         } else {
           let results = [];
@@ -27,13 +29,17 @@ const AllProducts = () => {
             results.push({ ...doc.data(), id: doc.id });
           });
           setData(results);
-          setIsPending(false);
+          setTimeout(() => {
+            setIsPending(false);
+          }, 1500);
           // console.log(results);
         }
       })
       .catch((err) => {
         setError(err.message);
-        setIsPending(false);
+        setTimeout(() => {
+            setIsPending(false);
+          }, 1500);
       });
   }, []);
 

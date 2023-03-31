@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import "./SingleProduct.css";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaTrashAlt } from "react-icons/fa";
 import CartContext from "../ContextApi/cart/CartContext";
 import { Link } from "react-router-dom";
 
@@ -21,6 +21,7 @@ function Product({ products }) {
                 <p className="over-1 discount">Promo 25%</p>
                 <p className="over-2 sales">Winter sales</p>
               </div>
+              <FaTrashAlt />
               <div className="product-desc">
                 <div className="prices">
                   <p className="price">989.99 lei </p>
@@ -31,7 +32,7 @@ function Product({ products }) {
               <div className="title-single-product">
                 <Link to={`/jackets/productPage/${item.id}`}><h3>{item.title}</h3></Link>
               </div>
-              <button className="button" onClick={() => addToCart(item)}>
+              <button className="single-product-button" onClick={() => addToCart(item)}>
                 Add to cart
               </button>
             </div>

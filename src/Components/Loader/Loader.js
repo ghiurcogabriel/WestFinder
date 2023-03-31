@@ -5,16 +5,24 @@ const Loader = () => {
   const [loadingDelay, setLoadingDelay] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeId = setTimeout(() => {
       setLoadingDelay(false);
-    }, 1000);
+    }, 10000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
   });
+
+  if (!loadingDelay) {
+    return null;
+  }
 
   return (
     <>
       {loadingDelay && (
         <div className="loader-container">
-          <div className="spinner"></div>
+          <span className="loader"></span>
         </div>
       )}
     </>

@@ -172,11 +172,7 @@ export const TabsData = ({ tabs }) => {
       )}
       {tabs?.parameters.map((param, i) => (
         <TabPanel value={value} index={3}>
-          {
-            <ul>
-              <li key={i}>{param}</li>
-            </ul>
-          }
+          {<p key={i}>{param}</p>}
         </TabPanel>
       ))}
     </Box>
@@ -190,7 +186,6 @@ export const Colors = ({ color }) => {
     <div className="product-color">
       {color?.colors?.map((color, i) => (
         <div
-          isrequired={true}
           onClick={() => setSelectedColor(color)}
           value={color}
           key={i}

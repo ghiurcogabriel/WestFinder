@@ -35,7 +35,6 @@ const Banner = () => {
             autoplay={true}
             loop={true}
             pagination={{ clickable: true }}
-            onSwiper={(swiper) => console.log(swiper)}
           >
             <SwiperSlide>
               <img className="banner-img" src={mountain1} alt="mountain" />

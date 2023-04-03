@@ -5,7 +5,7 @@ import { FaHeart, FaTrashAlt } from "react-icons/fa";
 import CartContext from "../ContextApi/cart/CartContext";
 import { Link } from "react-router-dom";
 
-function Product({ products }) {
+const Product = ({ products }) => {
   // console.log(products);
   // console.log(CartContext)
   const { addToCart } = useContext(CartContext);

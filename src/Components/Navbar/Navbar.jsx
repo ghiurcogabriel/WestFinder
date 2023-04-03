@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { authUser } from "../../Firebase/Config";
 
 // import { logOut } from "../../Firebase/Methods";
-import {useLogout} from '../../hooks/useLogout';
+import { useLogout } from "../../hooks/useLogout";
 
 import "./Navbar.css";
 import CartNum from "../../Pages/Cart/CartNum";
@@ -15,11 +15,12 @@ const activeLink = ({ isActive }) => (isActive ? "active" : "");
 
 const Navbar = () => {
   const [user] = useAuthState(authUser);
-  if(user.displayName === 'gabi'){
-  console.log(user.displayName, true);
-  } else{
-    console.log('first')
-  }
+  // console.log(user);
+  // if (user?.displayName === "gabi") {
+  //   console.log(user?.displayName, true);
+  // } else {
+  //   console.log("first");
+  // }
   const { logout } = useLogout();
 
   return (
@@ -37,7 +38,11 @@ const Navbar = () => {
         </label>
         <ul className="list">
           <li>
-            <NavLink to="./jackets" className={activeLink}>
+            <NavLink
+              to="./jackets"
+              className={activeLink}
+              onChange={() => console.log("nav womens")}
+            >
               Mens
             </NavLink>
           </li>
@@ -85,7 +90,11 @@ const Navbar = () => {
               >
                 Log Out
               </button>
-              <NavLink to="./admin">
+            </div>
+          )}
+          {/* to be implemented the admin user */}
+          {user?.displayName === "gabi" ? (
+            <NavLink to="./admin">
               <button
                 style={{
                   height: "35px",
@@ -98,9 +107,9 @@ const Navbar = () => {
               >
                 Admin
               </button>
-              </NavLink>
-            </div>
-          )}
+            </NavLink>
+          ) : null}
+
           <div className="cart-icon">
             <CartNum />
           </div>

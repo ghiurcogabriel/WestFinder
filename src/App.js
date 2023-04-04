@@ -23,9 +23,9 @@ function App() {
           <Route exact path='/' element={<Home />} />
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
-          <Route path="/jackets" element={<AllProducts />}/>
+          <Route path="/mens" element={<AllProducts />}/>
           <Route path="/admin" element={<Admin />}/>
-          <Route path="/jackets/productPage/:id" element={<ProductPage />}/>
+          <Route path="/mens/productPage/:id" element={<ProductPage />}/>
           <Route path="/cart" element={<Cart />}/>
         </Routes>
         <Footer />

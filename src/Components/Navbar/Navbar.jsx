@@ -1,9 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { authUser } from "../../Firebase/Config";
+import { CategoryContext } from "../../ContextApi/category/CategoryContext";
 
 // import { logOut } from "../../Firebase/Methods";
 import { useLogout } from "../../hooks/useLogout";
@@ -15,12 +17,9 @@ const activeLink = ({ isActive }) => (isActive ? "active" : "");
 
 const Navbar = () => {
   const [user] = useAuthState(authUser);
-  // console.log(user);
-  // if (user?.displayName === "gabi") {
-  //   console.log(user?.displayName, true);
-  // } else {
-  //   console.log("first");
-  // }
+  const {changeCategory} = useContext(CategoryContext);
+  console.log(user.getIdToken(true));
+
   const { logout } = useLogout();
 
   return (
@@ -39,15 +38,15 @@ const Navbar = () => {
         <ul className="list">
           <li>
             <NavLink
-              to="./jackets"
+              to="./mens"
               className={activeLink}
-              onChange={() => console.log("nav womens")}
+              onClick={()=> changeCategory('mens')}
             >
               Mens
             </NavLink>
           </li>
           <li>
-            <NavLink to="./pants" className={activeLink}>
+            <NavLink to="./womens" className={activeLink} onClick={()=> changeCategory('womens')}>
               Womens
             </NavLink>
           </li>

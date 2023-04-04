@@ -7,15 +7,24 @@ import { v4 as uuidv4 } from "uuid";
 import { db } from "../Firebase/Config";
 import Loader from "../Components/Loader/Loader";
 
+//context
+import { CategoryContext } from "../ContextApi/category/CategoryContext";
+import { useContext } from "react";
+
 const AllProducts = () => {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(false);
 
+  const {category} = useContext(CategoryContext);
+  console.log(category)
+  // console.log(changeCategory, 'state:', state)
+
   useEffect(() => {
     setIsPending(true);
+    console.log(category)
 
-    const products = collection(db, "womens");
+    const products = collection(db, category);
     getDocs(products)
       .then((snapshot) => {
         if (snapshot.empty) {
@@ -41,7 +50,7 @@ const AllProducts = () => {
             setIsPending(false);
           }, 1500);
       });
-  }, []);
+  }, [category]);
 
   return (
     <>

@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 // import CartContext from "../../ContextApi/cart/CartContext";
 import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
+import CartContext from "../../ContextApi/cart/CartContext";
 
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../Firebase/Config";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import { CategoryContext } from "../../ContextApi/category/CategoryContext";
 
 // Import Swiper styles
 import "swiper/css";
@@ -33,7 +36,10 @@ const ProductPage = () => {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(false);
-  // console.log(data);
+  console.log(data);
+  const {category} = useContext(CategoryContext);
+
+  const { addToCart} = useContext(CartContext);
 
   useEffect(() => {
     if (error) {
@@ -46,7 +52,7 @@ const ProductPage = () => {
   useEffect(() => {
     setIsPending(true);
 
-    getDoc(doc(db, `womens/${id}`))
+    getDoc(doc(db, `${category}/${id}`))
       .then((snap) => {
         // console.log(snap);
         if (snap.exists) {
@@ -69,7 +75,7 @@ const ProductPage = () => {
           setIsPending(false);
         }, 1000);
       });
-  }, [id]);
+  }, [category,id]);
 
   return (
     <>
@@ -82,8 +88,8 @@ const ProductPage = () => {
               <Link underline="hover" color="black" href="/">
                 Home
               </Link>
-              <Link underline="hover" color="black" href="/jackets">
-                Jackets
+              <Link underline="hover" color="black" href={`/${category}`}>
+                {category}
               </Link>
               <Link underline="hover" color="text.primary" aria-current="page">
                 {data?.title}
@@ -126,6 +132,7 @@ const ProductPage = () => {
                   <Colors color={data} />
                   <TabsData tabs={data} />
                 </div>
+                <button onClick={() => addToCart(data)} className="button4">Add to cart</button>
               </div>
             </div>
             <MainDesc maindesc={data} />

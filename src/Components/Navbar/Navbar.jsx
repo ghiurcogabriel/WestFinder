@@ -17,8 +17,8 @@ const activeLink = ({ isActive }) => (isActive ? "active" : "");
 
 const Navbar = () => {
   const [user] = useAuthState(authUser);
-  const {changeCategory} = useContext(CategoryContext);
-  console.log(user.getIdToken(true));
+  const { changeCategory } = useContext(CategoryContext);
+  // console.log(user.getIdToken(true));
 
   const { logout } = useLogout();
 
@@ -40,21 +40,25 @@ const Navbar = () => {
             <NavLink
               to="./mens"
               className={activeLink}
-              onClick={()=> changeCategory('mens')}
+              onClick={() => changeCategory("mens")}
             >
               Mens
             </NavLink>
           </li>
           <li>
-            <NavLink to="./womens" className={activeLink} onClick={()=> changeCategory('womens')}>
+            <NavLink
+              to="/womens"
+              className={activeLink}
+              onClick={() => changeCategory("womens")}
+            >
               Womens
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/outdor" className={activeLink}>
               All Products
             </NavLink>
-          </li>
+          </li> */}
 
           {!user && (
             <div style={{ display: "flex" }}>
@@ -75,16 +79,17 @@ const Navbar = () => {
                 alignItems: "center",
               }}
             >
-              <p style={{ color: "white" }}>Logged in as {user?.displayName}</p>
+              <p className="logged">Hello, {user?.displayName}!</p>
               <button
-                style={{
-                  height: "35px",
-                  width: "75px",
-                  fontWeight: "bold",
-                  fontSize: "15px",
-                  marginLeft: "15px",
-                  cursor: "pointer",
-                }}
+              className="button-17"
+                // style={{
+                //   height: "35px",
+                //   width: "75px",
+                //   fontWeight: "bold",
+                //   fontSize: "15px",
+                //   marginLeft: "15px",
+                //   cursor: "pointer",
+                // }}
                 onClick={logout}
               >
                 Log Out
@@ -94,7 +99,7 @@ const Navbar = () => {
           {/* to be implemented the admin user */}
           {user?.displayName === "gabi" ? (
             <NavLink to="./admin">
-              <button
+              {/* <button
                 style={{
                   height: "35px",
                   width: "75px",
@@ -103,9 +108,11 @@ const Navbar = () => {
                   marginLeft: "15px",
                   cursor: "pointer",
                 }}
-              >
-                Admin
-              </button>
+              > */}
+              <ul>
+                <li className="admin">Admin</li>
+              </ul>
+              {/* </button> */}
             </NavLink>
           ) : null}
 

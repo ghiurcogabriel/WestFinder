@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./AllProductsStyle.css";
 import SingleProduct from "./SingleProduct";
 import { collection, getDocs } from "firebase/firestore";
@@ -9,20 +9,18 @@ import Loader from "../Components/Loader/Loader";
 
 //context
 import { CategoryContext } from "../ContextApi/category/CategoryContext";
-import { useContext } from "react";
 
 const AllProducts = () => {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(false);
 
-  const {category} = useContext(CategoryContext);
-  console.log(category)
+  const { category } = useContext(CategoryContext);
+  // console.log(category);
   // console.log(changeCategory, 'state:', state)
 
   useEffect(() => {
     setIsPending(true);
-    console.log(category)
 
     const products = collection(db, category);
     getDocs(products)
@@ -47,8 +45,8 @@ const AllProducts = () => {
       .catch((err) => {
         setError(err.message);
         setTimeout(() => {
-            setIsPending(false);
-          }, 1500);
+          setIsPending(false);
+        }, 1500);
       });
   }, [category]);
 
@@ -58,12 +56,10 @@ const AllProducts = () => {
         <Loader />
       ) : (
         <div className="product-carousel">
-          {error && <div>{error}</div>}
-          <div style={{width: '20%', height: '100%', textAlign:'center'}}>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae porro eius deleniti, dolores itaque quia dolorum ad iusto pariatur rem?</p>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae porro eius deleniti, dolores itaque quia dolorum ad iusto pariatur rem?</p>
+          <div className="all-products-container">
+            {error && <div>{error}</div>}
+            <SingleProduct products={data} key={uuidv4} />
           </div>
-          <SingleProduct products={data} key={uuidv4} />
         </div>
       )}
     </>

@@ -3,15 +3,19 @@ import "./Admin.css";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../Firebase/Config";
 import Loader from "../../Components/Loader/Loader";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Admin = () => {
-  const [category, setCategory] = useState('mens');
+  const [category, setCategory] = useState("mens");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [season, setSeason] = useState("");
   const [price, setPrice] = useState(0);
   const [technology, setTechnology] = useState("");
   const [activities, setActivities] = useState("");
+
+  //loader
+  const [loader, setLoader] = useState(false);
 
   //set data in arrays for firestore
   const [newSize, setNewSize] = useState("");
@@ -28,11 +32,11 @@ const Admin = () => {
 
   const inputFocus = useRef(null);
   const [loadingDelay, setLoadingDelay] = useState(true);
-  
+
   const [newParameter, setNewParameter] = useState("");
   const [parameter, setParameter] = useState([]);
 
-  console.log(category);
+  // console.log(size);
   useEffect(() => {
     const timeId = setTimeout(() => {
       setLoadingDelay(false);
@@ -45,7 +49,7 @@ const Admin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoader(true);
     try {
       await addDoc(collection(db, category), {
         title,
@@ -63,6 +67,7 @@ const Admin = () => {
     } catch (e) {
       console.log(e.message);
     }
+    setTimeout(() => setLoader(false), 2000);
 
     setTitle("");
     setDescription("");
@@ -85,8 +90,7 @@ const Admin = () => {
       setSize((prevSize) => [...prevSize, ing]);
     }
     setNewSize("");
-    inputFocus.current.focus();
-    console.log(ing);
+    // inputFocus.current.focus();
   };
 
   const handleAddPhotos = (e) => {
@@ -98,7 +102,6 @@ const Admin = () => {
     }
     setNewPhoto("");
     // inputFocus.current.focus();
-    console.log(pht);
   };
 
   const handleAddColors = (e) => {
@@ -109,8 +112,7 @@ const Admin = () => {
       setColors((prevSize) => [...prevSize, clr]);
     }
     setNewColors("");
-    inputFocus.current.focus();
-    console.log(clr);
+    // inputFocus.current.focus();
   };
 
   const handleAddMainDesc = (e) => {
@@ -121,8 +123,7 @@ const Admin = () => {
       setMainDesc((prevSize) => [...prevSize, desc]);
     }
     setNewMainDesc("");
-    inputFocus.current.focus();
-    console.log(desc);
+    // inputFocus.current.focus();
   };
 
   const handleAddParameter = (e) => {
@@ -133,8 +134,7 @@ const Admin = () => {
       setParameter((prevSize) => [...prevSize, param]);
     }
     setNewParameter("");
-    inputFocus.current.focus();
-    console.log(param);
+    // inputFocus.current.focus();
   };
 
   return (
@@ -148,7 +148,13 @@ const Admin = () => {
               <h1 className="page-title">Add new Product</h1>
 
               <form onSubmit={handleSubmit}>
-                <select name="category" onChange={(e) => {setCategory(e.target.value)}} >
+                <select
+                  className="cat-select"
+                  name="category"
+                  onChange={(e) => {
+                    setCategory(e.target.value);
+                  }}
+                >
                   <option value="jackets">Mens</option>
                   <option value="womens">Womens</option>
                 </select>
@@ -161,6 +167,7 @@ const Admin = () => {
                     }}
                     value={title}
                     required
+                    placeholder="Add the product title"
                   />
                 </label>
 
@@ -172,6 +179,7 @@ const Admin = () => {
                     }}
                     value={description}
                     required
+                    placeholder="Product description"
                   />
                 </label>
 
@@ -184,8 +192,11 @@ const Admin = () => {
                       value={newMainDesc}
                       ref={inputFocus}
                       // required
+                      placeholder="Main description, one at a time"
                     />
-                    <button onClick={handleAddMainDesc}>add</button>
+                    <button className="button-30" onClick={handleAddMainDesc}>
+                      add
+                    </button>
                   </div>
                 </label>
                 <p>
@@ -202,6 +213,7 @@ const Admin = () => {
                     onChange={(e) => setActivities(e.target.value)}
                     value={activities}
                     required
+                    placeholder="Activities"
                   />
                 </label>
 
@@ -212,6 +224,7 @@ const Admin = () => {
                     onChange={(e) => setSeason(e.target.value)}
                     value={season}
                     required
+                    placeholder="Season"
                   />
                 </label>
 
@@ -222,6 +235,7 @@ const Admin = () => {
                     onChange={(e) => setTechnology(e.target.value)}
                     value={technology}
                     required
+                    placeholder="Technology"
                   />
                 </label>
 
@@ -234,8 +248,11 @@ const Admin = () => {
                       value={newColors}
                       ref={inputFocus}
                       // required
+                      placeholder="Color, one at a time"
                     />
-                    <button onClick={handleAddColors}>add</button>
+                    <button className="button-30" onClick={handleAddColors}>
+                      add
+                    </button>
                   </div>
                 </label>
                 <p>
@@ -254,8 +271,11 @@ const Admin = () => {
                       value={newSize}
                       ref={inputFocus}
                       // required
+                      placeholder="Size, one at a time"
                     />
-                    <button onClick={handleAddSizes}>add</button>
+                    <button className="button-30" onClick={handleAddSizes}>
+                      add
+                    </button>
                   </div>
                 </label>
                 <p>
@@ -274,8 +294,11 @@ const Admin = () => {
                       value={newPhoto}
                       // ref={inputFocus}
                       // required
+                      placeholder="Image links, one at a time"
                     />
-                    <button onClick={handleAddPhotos}>add</button>
+                    <button className="button-30" onClick={handleAddPhotos}>
+                      add
+                    </button>
                   </div>
                 </label>
                 <p>
@@ -294,8 +317,11 @@ const Admin = () => {
                       value={newParameter}
                       // ref={inputFocus}
                       // required
+                      placeholder="Parameters of the product"
                     />
-                    <button onClick={handleAddParameter}>add</button>
+                    <button className="button-30" onClick={handleAddParameter}>
+                      add
+                    </button>
                   </div>
                 </label>
                 <p>
@@ -312,10 +338,23 @@ const Admin = () => {
                     onChange={(e) => setPrice(e.target.value)}
                     value={price}
                     required
+                    placeholder="Price, in RON"
                   />
                 </label>
 
-                <button>Submit</button>
+                {loader ? (
+                  <div className="progress-add-item">
+                    <CircularProgress
+                      color='secondary'
+                    />
+                    <br />
+                    <span style={{ color: "green" }}>
+                      Product added successfully
+                    </span>
+                  </div>
+                ) : (
+                  <button>Submit</button>
+                )}
               </form>
             </div>
           </div>

@@ -1,73 +1,33 @@
 import React from "react";
+import { FaRegShareSquare } from "react-icons/fa";
 
-import "./PagesStyles.css";
+import "./SkiEquip.css";
 import "./Buttons.scss";
-import ski from "../assets/ski.jpg";
-import clothes from "../assets/clothes.jpg";
-import thenorthface from "../assets/thenorthface.jpg";
-import salomon from "../assets/salomon.jpg";
-import NewProducts from "./HomePages/NewProducts";
+import NewMensProducts from "./HomePages/NewProducts";
+import { NewWomensProducts } from "./HomePages/NewProducts";
+// import { Link } from "@mui/material";
 
 const SkiEquip = () => {
   return (
     <>
       <div className="ski-container">
-        <h1>See what's new in our store</h1>
-          <NewProducts />
-        
-
-        <h1>Similar products</h1>
-        <div className="ski-box">
-          <div className="equipmentt">
-            <div className="equip-container recommended-down">
-              <img src={thenorthface} alt="ski" />
-              <div className="button2">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                The North Face
-              </div>
-            </div>
-            <div className="equip-container recommended-up">
-              <img src={salomon} alt="ski" />
-              <div className="button2">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <p className="title">Salomon</p> 
-              </div>
-            </div>
-          </div>
+        <div className="div-1">
+          <a href="./mens">
+            <h1>
+              New items in mens collection <FaRegShareSquare />
+            </h1>
+          </a>
+          <NewMensProducts />
         </div>
 
-        <h1>See all products</h1>
-        <div className="ski-box">
-          <div className="equipmentt">
-            <div className="equip-container recommended-down">
-              <img src={thenorthface} alt="ski" />
-              <div className="button2">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                The North Face
-              </div>
-            </div>
-            <div className="equip-container recommended-up">
-              <img src={salomon} alt="ski" />
-              <div className="button2">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <p className="title">Salomon</p> 
-              </div>
-            </div>
-          </div>
+        <div className="div-2">
+          <a href="./womens">
+            <h1>
+              New items in womens collection <FaRegShareSquare />
+            </h1>
+          </a>
+          <NewWomensProducts />
         </div>
-
       </div>
     </>
   );

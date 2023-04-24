@@ -1,14 +1,17 @@
 import React, { useContext } from "react";
 
 import "./SingleProduct.css";
-import { FaHeart, FaTrashAlt } from "react-icons/fa";
+import { FaHeart, FaTrashAlt, FaCartPlus } from "react-icons/fa";
 import CartContext from "../ContextApi/cart/CartContext";
 import { Link } from "react-router-dom";
+import { CategoryContext } from "../ContextApi/category/CategoryContext";
 
 const Product = ({ products }) => {
   // console.log(products);
   // console.log(CartContext)
   const { addToCart } = useContext(CartContext);
+  const { category } = useContext(CategoryContext);
+  // console.log(category);
 
   return (
     <>
@@ -30,16 +33,23 @@ const Product = ({ products }) => {
                 <FaHeart />
               </div>
               <div className="title-single-product">
-                <Link to={`/jackets/productPage/${item.id}`}><h3>{item.title}</h3></Link>
+                <Link to={`/${category}/productPage/${item.id}`}>
+                  <h3>{item.title}</h3>
+                </Link>
               </div>
-              <button className="single-product-button" onClick={() => addToCart(item)}>
-                Add to cart
-              </button>
+              <div className="button3" onClick={() => addToCart(item)}>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Add to cart 
+                <FaCartPlus className="add-cart-icon"/>
+              </div>
             </div>
           </div>
         ))}
       </div>
     </>
   );
-}
+};
 export default Product;

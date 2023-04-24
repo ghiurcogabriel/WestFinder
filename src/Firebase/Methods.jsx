@@ -21,6 +21,14 @@ const auth = getAuth(appProject);
 
 const googleProvider = new GoogleAuthProvider();
 
+export const getProductByID= async (id) =>{
+  const response = await db.ref().child('mens').child(id).get();
+  const product = response.val()
+
+  console.log(product)
+  return product;
+}
+
 const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);

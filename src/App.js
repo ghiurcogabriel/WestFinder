@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import './App.css';
+//context
+import { CategoryContext } from "./ContextApi/category/CategoryContext";
 
 //components
 import Navbar from './Components/Navbar/Navbar';
@@ -14,8 +16,12 @@ import Register from './Pages/Register/Register';
 import ProductPage from "./Pages/ProductPage/ProductPage";
 import Cart from "./Pages/Cart/Cart";
 import Admin from "./Pages/Admin/Admin";
+import OrderPage from "./Pages/OrderPage/OrderPage";
+import Checkout from "./Pages/CheckoutPage/Checkout";
 
 function App() {
+  const {category} = useContext(CategoryContext);
+  console.log(category)
   return (
     <>
       <Navbar />
@@ -23,9 +29,12 @@ function App() {
           <Route exact path='/' element={<Home />} />
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
-          <Route path="/mens" element={<AllProducts />}/>
+          <Route path="/order" element={<OrderPage />}/>
+          <Route path="/checkout" element={<Checkout />}/>
+          {/* <Route path="/womens" element={<AllProducts />}/> */}
+          <Route path={`/${category}`} element={<AllProducts />}/>
           <Route path="/admin" element={<Admin />}/>
-          <Route path="/mens/productPage/:id" element={<ProductPage />}/>
+          <Route path={`/${category}/productPage/:id`} element={<ProductPage />}/>
           <Route path="/cart" element={<Cart />}/>
         </Routes>
         <Footer />

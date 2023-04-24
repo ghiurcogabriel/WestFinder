@@ -32,8 +32,8 @@ const Banner = () => {
             spaceBetween={5}
             slidesPerView={2}
             navigation
-            autoplay={true}
-            loop={true}
+            // autoplay={true}
+            // loop={true}
             pagination={{ clickable: true }}
           >
             <SwiperSlide>

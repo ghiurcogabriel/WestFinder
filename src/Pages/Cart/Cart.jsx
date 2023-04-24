@@ -67,7 +67,7 @@ const Cart = () => {
             <h2>
               Cart Total: {cartItems.reduce((amount, item) => item.price + amount, 0)} 
             </h2>
-            <Link to="" className="finish-order" style={{ color: "black" }}>
+            <Link to="order" className="finish-order" style={{ color: "black" }}>
               Complete order
             </Link>
           </div>

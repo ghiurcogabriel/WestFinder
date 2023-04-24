@@ -1,0 +1,12 @@
+.pr-container2{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+.men-category-main-page{
+    max-height: 500px;
+    max-width: 450px;
+}

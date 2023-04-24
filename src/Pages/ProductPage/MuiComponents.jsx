@@ -140,6 +140,12 @@ export const TabsData = ({ tabs }) => {
     fontSize: "18px",
   };
 
+  // if(!tabs?.parameters) {
+  //   return (
+  //     <div>No data found!</div>
+  //   )
+  // }
+
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -151,7 +157,7 @@ export const TabsData = ({ tabs }) => {
           <Tab label="Activities" {...a11yProps(3)} style={CustomStyle} />
           <Tab label="Technology" {...a11yProps(1)} style={CustomStyle} />
           <Tab label="Season" {...a11yProps(2)} style={CustomStyle} />
-          <Tab label="Usage" {...a11yProps(0)} style={CustomStyle} />
+          <Tab label="Parameters" {...a11yProps(0)} style={CustomStyle} />
         </Tabs>
       </Box>
 
@@ -170,9 +176,9 @@ export const TabsData = ({ tabs }) => {
           {tabs?.season}
         </TabPanel>
       )}
-      {tabs?.parameters.map((param, i) => (
+      {tabs?.parameters && tabs?.parameters.map((param, i) =>(
         <TabPanel value={value} index={3}>
-          {<p key={i}>{param}</p>}
+          <p key={i}>{param}</p>
         </TabPanel>
       ))}
     </Box>
@@ -180,13 +186,10 @@ export const TabsData = ({ tabs }) => {
 };
 
 export const Colors = ({ color }) => {
-  const [selectedColor, setSelectedColor] = useState(null);
-  console.log(selectedColor);
   return (
     <div className="product-color">
       {color?.colors?.map((color, i) => (
         <div
-          onClick={() => setSelectedColor(color)}
           value={color}
           key={i}
           style={{
@@ -195,7 +198,6 @@ export const Colors = ({ color }) => {
             height: "50px",
             borderRadius: "50%",
           }}
-          // style={{ width: "100px", height: "100px", borderRadius: "50%" }}
         ></div>
       ))}
     </div>

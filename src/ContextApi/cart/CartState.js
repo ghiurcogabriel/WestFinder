@@ -7,13 +7,23 @@ const CartState = ({children}) => {
   const initialState = {
     showCart: false,
     cartItems: [],
+    cartTotal: 0,
+    itemsTotal: 0
   };
+
+  const storeItems = (cartItemsToStore, cartTotal) => {
+    const local = {
+      cartItems: cartItemsToStore,
+      total: cartTotal,
+    }
+    localStorage.setItem(local)
+  }
 
   const [state, dispatch] = useReducer(CartReducer, initialState);
 
   const addToCart = (items) => {
     dispatch({ type: ADD_TO_CART, payload: items });
-    // localStorage.setItem('products', JSON.stringify(items));
+    localStorage.setItem('products', JSON.stringify(items));
   };
 
   const removeFromCart = (id) => {

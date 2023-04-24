@@ -1,3 +1,7 @@
-.product-carousel{
+.all-products-container{
     display: flex;
-}
+    width: 100%;
+    justify-content: center;}
+/* 
+.single-prod-part {
+} */

@@ -14,7 +14,7 @@ const Login = () => {
   const [user, loading] = useAuthState(authUser);
   const navigate = useNavigate();
   // console.log(user);
-  const { login } = useLogin();
+  const { login, error } = useLogin();
   
   const signin = (e) => {
     e.preventDefault();
@@ -57,6 +57,7 @@ const Login = () => {
               />
               <label>Password</label>
             </div>
+            <p>{error}</p>
             <div className="button-form">
               <button type="submit" id="submit">
                 Login

@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "./SingleProduct.css";
-import { FaHeart, FaTrashAlt, FaCartPlus } from "react-icons/fa";
+import { FaHeart, FaCartPlus } from "react-icons/fa";
 import CartContext from "../ContextApi/cart/CartContext";
 import { Link } from "react-router-dom";
 import { CategoryContext } from "../ContextApi/category/CategoryContext";
@@ -11,7 +11,16 @@ const Product = ({ products }) => {
   // console.log(CartContext)
   const { addToCart } = useContext(CartContext);
   const { category } = useContext(CategoryContext);
+  const [reducedPrice, setReducedPrice] = useState(null);
   // console.log(category);
+
+  useEffect(() => {
+    products?.forEach((item) => {
+      console.log(item.price + 100)
+      const price = item.price + 300;
+       setReducedPrice(price);
+    })
+  }, [products])
 
   return (
     <>
@@ -24,10 +33,10 @@ const Product = ({ products }) => {
                 <p className="over-1 discount">Promo 25%</p>
                 <p className="over-2 sales">Winter sales</p>
               </div>
-              <FaTrashAlt />
+              {/* <FaTrashAlt /> */}
               <div className="product-desc">
                 <div className="prices">
-                  <p className="price">989.99 lei </p>
+                  <p className="price">{reducedPrice} </p>
                   <p className="reduced-price">{item.price}</p>
                 </div>
                 <FaHeart />

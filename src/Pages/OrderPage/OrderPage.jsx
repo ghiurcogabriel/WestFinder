@@ -8,24 +8,37 @@ import { FaArrowAltCircleRight } from "react-icons/fa";
 import { useEffect } from "react";
 
 const OrderPage = () => {
-  const { cartItems, removeFromCart } =
-    useContext(CartContext);
-    const [newData, setNewData] = useState({});
+  const { cartItems, removeFromCart } = useContext(CartContext);
+  const [newData, setNewData] = useState({});
   console.log(newData);
 
   const { category } = useContext(CategoryContext);
 
-useEffect(() => {
-    cartItems?.map(item =>{
-        return setNewData(item)
-    })
-}, [cartItems]) 
+  useEffect(() => {
+    cartItems?.map((item) => {
+      return setNewData(item);
+    });
+  }, [cartItems]);
 
   return (
     <div className="order-container">
       <div className="cart_wrapper">
         {cartItems.length === 0 ? (
-          <h4>No orders yet. Go buy some nice things!</h4>
+          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <h4>No orders yet. Go buy some nice things!</h4>
+            <Link to="/">
+              <div style={{maxWidth: '500px', display: 'flex'}}>
+                <div className="button3 btn-order">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  Go back home
+                  <FaArrowAltCircleRight className="add-cart-icon" />
+                </div>
+              </div>
+            </Link>
+          </div>
         ) : (
           <>
             <div className="cart-items-order">
@@ -56,24 +69,24 @@ useEffect(() => {
                 </div>
               ))}
             </div>
+            <div className="total-cart-order">
+              <h2>
+                Cart Total:
+                {cartItems.reduce((amount, item) => item.price + amount, 0)}
+              </h2>
+              <Link to="/checkout">
+                <div className="button3 btn-order">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  Go to Checkout
+                  <FaArrowAltCircleRight className="add-cart-icon" />
+                </div>
+              </Link>
+            </div>
           </>
         )}
-      </div>
-      <div className="total-cart-order">
-        <h2>
-          Cart Total:
-          {cartItems.reduce((amount, item) => item.price + amount, 0)}
-        </h2>
-        <Link to='/checkout'>
-          <div className="button3 btn-order">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Go to Checkout
-            <FaArrowAltCircleRight className="add-cart-icon" />
-          </div>
-        </Link>
       </div>
     </div>
   );

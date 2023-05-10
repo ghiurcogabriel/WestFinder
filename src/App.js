@@ -18,6 +18,7 @@ import Cart from "./Pages/Cart/Cart";
 import Admin from "./Pages/Admin/Admin";
 import OrderPage from "./Pages/OrderPage/OrderPage";
 import Checkout from "./Pages/CheckoutPage/Checkout";
+import OrderPlaced from "./Pages/OrderPlaced/OrderPlaced";
 
 function App() {
   const {category} = useContext(CategoryContext);
@@ -31,6 +32,7 @@ function App() {
           <Route path="/register" element={<Register />}/>
           <Route path="/order" element={<OrderPage />}/>
           <Route path="/checkout" element={<Checkout />}/>
+          <Route path="/checkout/orderPlaced" element={<OrderPlaced />}/>
           {/* <Route path="/womens" element={<AllProducts />}/> */}
           <Route path={`/${category}`} element={<AllProducts />}/>
           <Route path="/admin" element={<Admin />}/>

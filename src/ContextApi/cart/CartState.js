@@ -11,13 +11,13 @@ const CartState = ({children}) => {
     itemsTotal: 0
   };
 
-  const storeItems = (cartItemsToStore, cartTotal) => {
-    const local = {
-      cartItems: cartItemsToStore,
-      total: cartTotal,
-    }
-    localStorage.setItem(local)
-  }
+  // const storeItems = (cartItemsToStore, cartTotal) => {
+  //   const local = {
+  //     cartItems: cartItemsToStore,
+  //     total: cartTotal,
+  //   }
+  //   localStorage.setItem(local)
+  // }
 
   const [state, dispatch] = useReducer(CartReducer, initialState);
 

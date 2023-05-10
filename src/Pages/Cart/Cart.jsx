@@ -8,7 +8,7 @@ import DeleteForeverSharpIcon from "@mui/icons-material/DeleteForeverSharp";
 const Cart = () => {
   const { cartItems, showCart, showCartItems, removeFromCart } =
     useContext(CartContext);
-  // console.log(cartItems, showCart);
+  // console.log(showCart);
   return (
     <>
       {showCart && (
@@ -65,9 +65,15 @@ const Cart = () => {
           </div>
           <div className="total-cart">
             <h2>
-              Cart Total: {cartItems.reduce((amount, item) => item.price + amount, 0)} 
+              Cart Total:{" "}
+              {cartItems.reduce((amount, item) => item.price + amount, 0)}
             </h2>
-            <Link to="order" className="finish-order" style={{ color: "black" }}>
+            <Link
+              onClick={showCartItems}
+              to="order"
+              className="finish-order"
+              style={{ color: "black" }}
+            >
               Complete order
             </Link>
           </div>
